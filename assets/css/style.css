@@ -1,0 +1,50 @@
+header {
+    text-align: center;
+}
+
+.smallIcon{
+    height: 3em;
+}
+
+.fivedayforecast div{
+    border: thin black solid;
+    padding: 1em;
+    background-color: rgb(4, 4, 100);
+    color: white;
+    border-radius: .5em;
+}
+
+.fivedayforecast p {
+    margin-top: .25em;
+    margin-bottom: .25em;
+}
+
+.maindisplay {
+    border: thin black solid;
+    border-radius: .5em;
+    background-color: rgb(114, 153, 224);
+    padding-left: 2em;
+    
+}
+
+.jumbotron {
+    background-image: linear-gradient(to right, rgb(114, 153, 224), rgb(4, 4, 100));
+    font-weight: 700;
+    font-size: 3em;
+}
+
+form {
+    font-weight: bolder;
+    font-size: 1.25em;
+}
+
+#searchButton {
+    background-color: rgb(4, 4, 100);
+    color: white;
+    border: none;
+}
+#searchButton:hover {
+    background-color: #6c757d;;
+    color: white;
+}
+

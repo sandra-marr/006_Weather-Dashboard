@@ -48,3 +48,33 @@ form {
     color: white;
 }
 
+.uvLow{
+    background-color: green;
+    color: white;
+    padding: .15em;
+    border-radius: .5em;
+}
+
+.uvMed{
+    background-color: yellow;
+    color: white;
+    padding: .15em;
+}
+
+.uvHigh{
+    background-color: orange;
+    color: white;
+    padding: .15em;
+}
+
+.uvVeryHigh{
+    background-color: red;
+    color: white;
+    padding: .15em;
+}
+
+.uvExtreme{
+    background-color: violet;
+    color: white;
+    padding: .15em;
+}

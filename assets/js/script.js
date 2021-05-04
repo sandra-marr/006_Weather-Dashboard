@@ -1,7 +1,6 @@
-
-
 var currentDate = moment().format('l');
 var currentDateEL = $('.currentDate');
+
 
 var dayTwo = moment().add(1, 'days').format('l');
 var dayThree = moment().add(2, 'days').format('l');
@@ -18,11 +17,9 @@ $('#date5').text(dayFive);
 
 var buttonClickHandler = function (event) {
     var cityInput = event.target.getAttribute('data-city');
-    console.log(cityInput);
   
     if (cityInput) {
       $('#city').text(cityInput + ", ");
-      console.log(cityInput);
       getInitialWeatherData(cityInput)
     };
 };
@@ -30,26 +27,54 @@ var buttonClickHandler = function (event) {
 var buttonClickHandler2 = function (event) {
   event.preventDefault();
 
-  var cityInput = $('#formInput').val();
-  console.log(cityInput);
+  var cityInput = $('#cityInput').val();
+  var stateInput = $('#stateInput').val();
+  var countryInput = $('#countryInput').val();
 
+  
+  if (cityInput && stateInput && countryInput) {
+    $('#city').text(cityInput + ", " + stateInput + ", " + countryInput);
+    var q = cityInput+","+stateInput+","+countryInput;
+    console.log(q)
+    getInitialWeatherData(q);
+    return;
+  };
+  if (cityInput && stateInput) {
+    $('#city').text(cityInput + ", " + stateInput);
+    var q = cityInput+","+stateInput;
+    console.log(q)
+    getInitialWeatherData(q);
+    return;
+  };
+  if (cityInput && countryInput) {
+    $('#city').text(cityInput + ", " + countryInput);
+    var q = cityInput+","+countryInput;
+    console.log(q)
+    getInitialWeatherData(q);
+    return;
+  };
   if (cityInput) {
-    $('#city').text(cityInput + ", ");
-    console.log(cityInput);
-    getInitialWeatherData(cityInput)
+    $('#city').text(cityInput);
+    var q = cityInput;
+    console.log(q)
+    getInitialWeatherData(q);
+    return;
   };
 };
 
-var getInitialWeatherData = function (city) {
+var getInitialWeatherData = function (q) {
 
-    console.log(city);
 
-    var apiCityUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&appid=5e948a33c4b15c48b8be4cbafe01ae09';
+
+    var apiCityUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + q + '&cnt=5&units=imperial&appid=5e948a33c4b15c48b8be4cbafe01ae09';
+
   
     fetch(apiCityUrl)
       .then(function (response) {
         if (response.ok) {
           response.json().then(function (data) {
+
+            console.log(data);
 
             var lon = data.coord.lon;
             var lat = data.coord.lat;
@@ -85,6 +110,22 @@ var getInitialWeatherData = function (city) {
             $('.currentHumidity').text(currentHumidity + " %");
             $('.currentUvi').text(currentUvIndex);
             $('.currentWeatherIcon').attr('src', 'http://openweathermap.org/img/wn/' + currentWIcon + '@2x.png');
+
+            function currentUviCheck () {
+          
+              if(currentUvIndex <= 2){
+                $('.currentUvi').addClass("uvLow")
+              } else if(currentUvIndex <= 5){
+                $('.currentUvi').addClass("uvMed")
+              } else if(currentUvIndex <= 7){
+                $('.currentUvi').addClass("uvHigh")
+              } else if(currentUvIndex <= 10){
+                $('.currentUvi').addClass("uvVeryHigh")
+              } else {
+                $('.currentUvi').addClass("uvExtreme")
+              }};
+          
+            currentUviCheck();
 
             var dailyTempArr = [];
             var dailyHumidityArr = [];
@@ -125,6 +166,8 @@ var getInitialWeatherData = function (city) {
             $('.dayFourIcon').attr('src', 'http://openweathermap.org/img/wn/' + dailyIconArr[2] + '@2x.png')
             $('.dayFiveIcon').attr('src', 'http://openweathermap.org/img/wn/' + dailyIconArr[3] + '@2x.png')
 
+            
+
 
           })
         }}
@@ -132,8 +175,82 @@ var getInitialWeatherData = function (city) {
   }
   
 
+ 
+// from w3 schools and stack overflow; conditional ? value if true : value if false --- if local storage has a value for search history, then return the object for search history, otherwise return a blank array. 
+  var citySearchHistory = (localStorage.citySearchHistory) ? JSON.parse(localStorage.citySearchHistory) : [];
+
+  $('#searchButton').on('click', function(event){
+    event.preventDefault();
+    citySearchHistory.push($('#cityInput').val());
+    localStorage.citySearchHistory = JSON.stringify(citySearchHistory);
+    })
+
+  document.querySelector('#cityInput').addEventListener("focus", () => {
+
+    var displayData = document.querySelector("datalist#searchdatacity");
+
+    displayData.innerHTML = "";
+
+    citySearchHistory.forEach((search) => {
+      displayData.innerHTML = '<option>' + displayData.innerHTML;
+      displayData.querySelector('option').textContent = search;
+
+    });
+
+  }); 
+
+  var stateSearchHistory = (localStorage.stateSearchHistory) ? JSON.parse(localStorage.stateSearchHistory) : [];
+
+  $('#searchButton').on('click', function(event){
+    event.preventDefault();
+    stateSearchHistory.push($('#stateInput').val());
+    localStorage.stateSearchHistory = JSON.stringify(stateSearchHistory);
+    })
+
+  document.querySelector('#stateInput').addEventListener("focus", () => {
+
+    var displayData = document.querySelector("datalist#searchdatastate");
+
+    displayData.innerHTML = "";
+
+    stateSearchHistory.forEach((search) => {
+      displayData.innerHTML = '<option>' + displayData.innerHTML;
+      displayData.querySelector('option').textContent = search;
+
+    });
+
+  }); 
+
+  var countrySearchHistory = (localStorage.countrySearchHistory) ? JSON.parse(localStorage.countrySearchHistory) : [];
+
+  $('#searchButton').on('click', function(event){
+    event.preventDefault();
+    countrySearchHistory.push($('#countryInput').val());
+    localStorage.countrySearchHistory = JSON.stringify(countrySearchHistory);
+    })
+
+  document.querySelector('#countryInput').addEventListener("focus", () => {
+
+    var displayData = document.querySelector("datalist#searchdatacountry");
+
+    displayData.innerHTML = "";
+
+    countrySearchHistory.forEach((search) => {
+      displayData.innerHTML = '<option>' + displayData.innerHTML;
+      displayData.querySelector('option').textContent = search;
+
+    });
+
+  }); 
+
+
+
   $('.cityButtons').on('click', buttonClickHandler);
   $('#searchButton').on('click', buttonClickHandler2);
   $(document).ready(getInitialWeatherData('Seattle'));
+
+  $('#searchButton').on('click', () => {
+    $('input').val('');
+  })
 
 

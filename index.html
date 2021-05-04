@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Weather Dashboard</title>
 </head>
-<body>
+<body class="m-2">
     <header>
         <h1 class="jumbotron">Weather Dashboard</h1>
     </header>
@@ -17,8 +17,17 @@
             <div class="card-body d-flex w-100 p-2">
                 <form class="w-100">
                     <div class="form-group w-100">
-                        <label for="CitySearch">Search for a City:</label>
-                        <input type="text" class="form-control w-100" id="formInput">
+                        <label for="CitySearch">City:</label>
+                        <input type="text" class="form-control w-100 search" id="cityInput" list="searchdatacity" required/>
+                        <datalist id="searchdatacity"></datalist>
+                        
+                        <label for="CitySearch">State:</label>
+                        <input type="text" class="form-control w-100 search" id="stateInput" list="searchdatastate">
+                        <datalist id="searchdatastate"></datalist>
+                        
+                        <label for="CitySearch">Country:</label>
+                        <input type="text" class="form-control w-100 search" id="countryInput" list="searchdatacountry">
+                        <datalist id="searchdatacountry"></datalist><!-- search data list idea from stack overflow -->
                     </div>
                     <button type="submit" class="btn btn-primary w-100 btn-lg" id="searchButton">Submit</button>
                 </form>
@@ -48,8 +57,8 @@
                 <div>Humidity: <span class="currentHumidity"></span></div> 
                 <div>UV Index: <span class="currentUvi"></span></div> 
             </div>
-            <h2 class="align-middle pt-5">5-Day Forecast:</h2>
-            <div class ="fivedayforecast row w-100 d-flex justify-content-around mb-2">
+            <h2 class="align-middle pt-5 row w-100">5-Day Forecast:</h2>
+            <div class ="fivedayforecast row w-100 d-flex justify-content-around mb-2 container-md">
                 <div>
                     <p class="currentDate">mm/dd/yyy</p>
                     <img class="currentWeatherIcon smallIcon"></img>

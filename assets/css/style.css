@@ -1,17 +1,28 @@
+body {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+}
+
 header {
     text-align: center;
+    color: black;
 }
 
 .smallIcon{
     height: 3em;
 }
 
+.fivedayforecast {
+    margin: 0;
+}
+
 .fivedayforecast div{
     border: thin black solid;
-    padding: 1em;
+    box-shadow: ;
+    padding: 0 0 0 .25em;
     background-color: rgb(4, 4, 100);
-    color: white;
+    color: green;
     border-radius: .5em;
+    margin: .25em;
 }
 
 .fivedayforecast p {
@@ -19,12 +30,20 @@ header {
     margin-bottom: .25em;
 }
 
+.fivedayforecast p:first-of-type {
+    color:white;
+}
+
+.fivedayforecast p span {
+    color: white;
+}
+
 .maindisplay {
-    border: thin black solid;
+    border: thin grey solid;
     border-radius: .5em;
     background-color: rgb(114, 153, 224);
-    padding-left: 2em;
-    
+    margin: 0;
+    box-shadow: 10px 5px 5px black;
 }
 
 .jumbotron {
@@ -36,6 +55,12 @@ header {
 form {
     font-weight: bolder;
     font-size: 1.25em;
+}
+
+.label {
+    font-weight: bolder;
+    font-size: 1.25em;
+
 }
 
 #searchButton {
@@ -57,7 +82,7 @@ form {
 
 .uvMed{
     background-color: yellow;
-    color: white;
+    color: black;
     padding: .15em;
 }
 
@@ -78,3 +103,4 @@ form {
     color: white;
     padding: .15em;
 }
+

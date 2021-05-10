@@ -30,7 +30,6 @@ var buttonClickHandler2 = function (event) {
   var cityInput = $('#cityInput').val();
   var stateInput = $('#stateInput').val();
   var countryInput = $('#countryInput').val();
-
   
   if (cityInput && stateInput && countryInput) {
     $('#city').text(cityInput + ", " + stateInput + ", " + countryInput);
@@ -56,10 +55,13 @@ var buttonClickHandler2 = function (event) {
   if (cityInput) {
     $('#city').text(cityInput);
     var q = cityInput;
-    console.log(q)
     getInitialWeatherData(q);
     return;
   };
+
+    $('#myModal').modal('show')
+
+   
 };
 
 var getInitialWeatherData = function (q) {
@@ -73,9 +75,6 @@ var getInitialWeatherData = function (q) {
       .then(function (response) {
         if (response.ok) {
           response.json().then(function (data) {
-
-            console.log(data);
-
             var lon = data.coord.lon;
             var lat = data.coord.lat;
 
@@ -83,7 +82,8 @@ var getInitialWeatherData = function (q) {
 
           });
         } else {
-          alert('Error: ' + response.statusText);
+          cityInput = $('#city').text("Seattle");
+          $('#myModal').modal('show')
         }
       })
       .catch(function (error) {
@@ -97,7 +97,7 @@ var getInitialWeatherData = function (q) {
       .then(function (response) {
         if (response.ok) {
           response.json().then(function (data) {
-            console.log(data);
+  
 
             var currentTemp = data.current.temp;
             var currentWind = data.current.wind_speed;
@@ -242,8 +242,6 @@ var getInitialWeatherData = function (q) {
     });
 
   }); 
-
-
 
   $('.cityButtons').on('click', buttonClickHandler);
   $('#searchButton').on('click', buttonClickHandler2);

@@ -41,4 +41,4 @@ SOFTWARE.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-&copy;2021 Sandr Marr
+&copy;2021 Sandra Marr

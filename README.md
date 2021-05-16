@@ -18,3 +18,7 @@ It was challenging to learn how to fetch the weather data with the given API. Wh
 https://sandra-marr.github.io/Homework06/
 
 ![GIF of deployed page](./assets/WeatherDashboard.gif)
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+Copyright (c) [2021] [Sandr Marr]

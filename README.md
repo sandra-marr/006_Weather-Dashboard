@@ -15,7 +15,7 @@ It was challenging to learn how to fetch the weather data with the given API. Wh
 
 ## Demo and Deployed Link
 
-https://sandra-marr.github.io/Homework06/
+https://sandra-marr.github.io/006_Weather-Dashboard/
 
 ![GIF of deployed page](./assets/WeatherDashboard.gif)
 

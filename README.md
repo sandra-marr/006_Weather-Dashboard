@@ -1,5 +1,4 @@
-# Homework06
-## Weather Dashboard
+# Weather Dashboard
 
 To create a weather dashboard, a few key components were needed. Input from the user was required, gathering weather data using a weather API, and displaying the relevant information from the response on the screen. 
 
